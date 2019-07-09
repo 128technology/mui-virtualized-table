@@ -4,12 +4,14 @@ import * as React from "react";
 
 export type CellClickEventHandler<HTMLElement, TRow> = (
   event: React.MouseEvent<HTMLElement>,
-  props: {
-    column: IMuiVirtualizedTableColumn<TRow>;
-    rowData?: TRow;
-    data?: TRow[];
-  }
+  props: IHeaderClickProps<TRow>
 ) => void;
+
+export interface IHeaderClickProps<TRow> {
+  column: IMuiVirtualizedTableColumn<TRow>;
+  rowData?: TRow;
+  data?: TRow[];
+}
 
 export type ICellPropsProducer<TRow> =
   | TableCellProps
@@ -39,7 +41,7 @@ export interface IMuiVirtualizedTableColumn<TRow = any> {
   /**
    * Callback when header is clicked on (has precedence over `onHeaderClick` on table)
    */
-  onHeaderClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onHeaderClick?: CellClickEventHandler<HTMLElement, TRow> | boolean;
 
   /**
    * Width of cell.
@@ -47,6 +49,14 @@ export interface IMuiVirtualizedTableColumn<TRow = any> {
    * Can be a `number`, straight pixel width, or percentage string like `40%`
    */
   width?: number | string;
+
+  /**
+   * Minimum width of cell.
+   *
+   * Must be a `number`
+   */
+  minWidth?: number;
+
 
   cellProps?: ICellPropsProducer<TRow>;
 }
