@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 8.9.4
+install:
+- npm install
+script: 
+deploy:
+- provider: npm
+  email: 128techadmin@128technology.com
+  skip_cleanup: true
+  api_key:
+    secure: bXJxVnp9LtGLmV0FPcjIePFnhjvjFKLUsJIkvw1QNUDAUry17qBBcV8d8rIAsz0Pyd5bqa8++kXqFGZFpzr1vlpMWZ+VDI+2PjaiE99y/PrR3xHNf1ZI9fUdnA324fSfzRtCiy1Ucp1gTX4faz/IihmP4N4yhYY0aXEgy9MeuzuA0kNq/nuBcRaFoUWengp1x3a4Z2IU3rqyWoAJ+HHcYeN11OVTAqI2YqhguiTqVYZzubQNjl5DVw6D13MRvGD8n5ytB9iyV1tDyyVxdp/7g4ugwpKC60zwrH8veMSCKT5Vmuu9FaBIRSIoiOlzyrQtbr7YkYi1dITAogSEmeV9yeJavrOcQIvNvng1bwVueZUS3DNV+KXm926M9krjOh22vg+Nuc1vsCcKmgivQ078Yu+Y2hJ3Ub+5DqczZFMrqxCiCshdvNoPq4JniaNK5cMyloICiTSyujLEtpwaQo0ZnqTzmoCZWXZeTYHxHiiFItpLUBSRJzD2oXeNK90/jvg2B1eXZmC8OS7uyrnlW50XIGQK2PP5NIy37w6UE1j04A3yZyinjXb9e5qt13gqPTpfBhZWfEbYiISGDbr4W8imriwphuY5xFIqeUmSq3Fks9LEWhYTcCg2On8cqdOSZSLzXWLCnALeyf3BWBp0vOFVuVTBHw+KiFah60GRBcZncoY=
+  on:
+    repo: 128technology/mui-virtualized-table
+    branch: master

@@ -1,6 +1,6 @@
 {
-  "name": "mui-virtualized-table",
-  "version": "3.0.0-3",
+  "name": "@128technology/mui-virtualized-table",
+  "version": "3.0.0-4",
   "description": "Material-UI table with windowing, row/column freezing, and more",
   "main": "dist/index.js",
   "types": "index.d.ts",
@@ -8,7 +8,11 @@
     "dist",
     "index.d.ts"
   ],
-  "repository": "https://github.com/techniq/mui-virtualized-table",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": "https://github.com/128technology/mui-virtualized-table",
   "author": "Sean Lynch <techniq35@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
@@ -42,7 +46,6 @@
     "storybook": "start-storybook -p 9009 -c stories",
     "build-docs": "cd stories && yarn install && cd .. && build-storybook -c stories -o docs",
     "deploy-docs": "gh-pages -d docs",
-    "preversion": "yarn build",
-    "postpublish": "yarn build-docs && yarn deploy-docs"
+    "prepublishOnly": "npm run build"
   }
 }
