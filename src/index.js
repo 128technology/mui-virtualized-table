@@ -426,6 +426,8 @@ class MuiTable extends Component {
       ...props
     } = this.props;
 
+    const { scrollbar } = this.state;
+
     let calculatedHeight = 0;
     if (height) {
       calculatedHeight = height; // fixed height
