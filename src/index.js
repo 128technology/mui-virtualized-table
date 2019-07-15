@@ -426,6 +426,8 @@ class MuiTable extends Component {
       ...props
     } = this.props;
 
+    const { scrollbar } = this.state;
+
     let calculatedHeight = 0;
     if (height) {
       calculatedHeight = height; // fixed height
@@ -443,8 +445,10 @@ class MuiTable extends Component {
     const paginationHeight =
       theme.mixins.toolbar.minHeight + FOOTER_BORDER_HEIGHT;
 
+    const scrollbarHeight = scrollbar.horizontal ? scrollbar.size : 0;
+
     const calculatedHeightWithFooter =
-      calculatedHeight + (pagination ? paginationHeight : 0);
+      calculatedHeight + (pagination ? paginationHeight : 0) + scrollbarHeight;
     const containerHeight =
       maxHeight != null
         ? Math.min(calculatedHeightWithFooter, maxHeight)
