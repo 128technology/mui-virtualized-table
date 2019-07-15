@@ -162,6 +162,7 @@ class MuiTable extends Component {
     this.state = {
       hoveredColumn: null,
       hoveredRowData: null,
+      scrollbar: {},
       widths
     };
   }
@@ -379,6 +380,21 @@ class MuiTable extends Component {
     }
   }
 
+  captureScrollbarSize = (scrollbar) => {
+    this.setState({ scrollbar }, () => this.multiGrid.recomputeGridSize());
+  }
+
+  calculateColumnWidths = (col) => {
+    const { columns } = this.props;
+    const { scrollbar } = this.state;
+    const scrollbarWidth = scrollbar.vertical ? scrollbar.size : 0;
+    const offset = Array.isArray(columns) && columns.length > 0 
+      ? scrollbarWidth / columns.length
+      : 0;
+
+    return this.getColumnWidthFunction()(col) - offset;
+  }
+
   render() {
     const {
       data,
@@ -409,6 +425,8 @@ class MuiTable extends Component {
       resizable,
       ...props
     } = this.props;
+
+    const { scrollbar } = this.state;
 
     let calculatedHeight = 0;
     if (height) {
@@ -447,7 +465,7 @@ class MuiTable extends Component {
           cellRenderer={this.cellRenderer}
           ref={el => (this.multiGrid = el)}
           width={width}
-          columnWidth={this.getColumnWidthFunction()}
+          columnWidth={this.calculateColumnWidths}
           columnCount={Array.isArray(columns) ? columns.length : 0}
           fixedColumnCount={fixedColumnCount}
           enableFixedColumnScroll={fixedColumnCount > 0}
@@ -463,6 +481,7 @@ class MuiTable extends Component {
           classNameTopRightGrid={'topRightGrid'}
           classNameBottomLeftGrid={'bottomLeftGrid'}
           classNameBottomRightGrid={'bottomRightGrid'}
+          onScrollbarPresenceChange={this.captureScrollbarSize}
         />
 
         {pagination && (
