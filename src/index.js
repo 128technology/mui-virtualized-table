@@ -215,7 +215,6 @@ class MuiTable extends Component {
       resizable,
       cellProps: defaultCellProps
     } = this.props;
-
     const { hoveredColumn, hoveredRowData } = this.state;
 
     const column = columns[columnIndex];
@@ -467,7 +466,7 @@ class MuiTable extends Component {
           cellRenderer={this.cellRenderer}
           ref={el => (this.multiGrid = el)}
           width={width}
-          columnWidth={this.calculateColumnWidths}
+          columnWidth={(col) => this.calculateColumnWidths(col)}
           columnCount={Array.isArray(columns) ? columns.length : 0}
           fixedColumnCount={fixedColumnCount}
           enableFixedColumnScroll={fixedColumnCount > 0}
