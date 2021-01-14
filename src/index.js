@@ -241,9 +241,11 @@ class MuiTable extends Component {
       ...resolveCellProps(column.cellProps)
     };
 
+    const titleAttr = (rowData && rowData[column.name] && typeof rowData[column.name] === 'string') ? rowData[column.name] : ''
+
     const contents = (
       <div className={classes.cellContents}>
-        <span style={{ flex: 'auto' }}>
+        <span style={{ flex: 'auto' }} title={titleAttr}>
           {isHeader
             ? column.header != null
               ? column.header
